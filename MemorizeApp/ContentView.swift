@@ -15,7 +15,7 @@ struct ContentView: View {
             CardView()
             CardView()
         }
-        .foregroundColor(.blue)
+        .foregroundColor(.orange)
         .padding()
     }
 }
@@ -25,6 +25,7 @@ struct ContentView: View {
 }
 
 struct CardView : View {
+    
     @State var isFaceUp = false
     
     var body: some View{
@@ -33,7 +34,7 @@ struct CardView : View {
                 if isFaceUp{
                     base.fill(.white)
                     base.strokeBorder(lineWidth: 2)
-                    Text("👻").font(.largeTitle)
+                    Text("🤡").font(.largeTitle)
                 } else{
                     base.fill()
             }
