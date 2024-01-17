@@ -21,7 +21,7 @@ struct EmojiMemoryGameView: View {
     var cards: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 85))]) {
             ForEach(viewmodel.cards.indices, id: \.self ) { index in
-                CardView(card: viewmodel.cards[index])
+                CardView(viewmodel.cards[index])
                     .aspectRatio(2/3, contentMode: .fit)
             }
          
@@ -38,6 +38,11 @@ struct EmojiMemoryGameView: View {
 
 struct CardView : View {
     let card : MemoryGame<String>.Card
+    
+    init(_ card: MemoryGame<String>.Card) {
+        self.card = card
+    }
+    
     var body: some View{
         ZStack {
             let base = RoundedRectangle(cornerRadius: 12)
