@@ -23,6 +23,8 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     }
     
     var indexOfTheOneAndOnlyFaceUpCards: Int?
+        
+    
     
     mutating func choose (_ card: Card){
         if let chosenIndex = cards.firstIndex(where: {$0.id == card.id }) {
