@@ -16,14 +16,14 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         //add numberOfPairsOfCards x 2 cards
         for pairIndex in 0..<max(2,numberOfPairsOfCards){
             let content = cardContentFactory(pairIndex)
-            cards.append(Card(content: content))
-            cards.append(Card(content: content))
+            cards.append(Card(content: content, id: "\(pairIndex+1)a"))
+            cards.append(Card(content: content, id: "\(pairIndex+1)b"))
 
         }
     }
     
     func choose (_ card: Card){
-        
+        print("chose \(card)")
     }
     
     mutating func shuffle() {
@@ -31,9 +31,13 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         print(cards)
     }
     
-    struct Card: Equatable {
+    struct Card: Equatable,Identifiable,CustomDebugStringConvertible {
         var isFaceUp = true
         var isMatched = false
         let content: CardContent
+        var id: String
+        var debugDescription: String{
+            "\(id):\(content):\(isFaceUp ? "up" : "down")\(isMatched ? "matched" : "")"
+        }
     }
 }
