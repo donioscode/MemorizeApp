@@ -23,31 +23,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     }
     
     var indexOfTheOneAndOnlyFaceUpCards: Int? {
-        get {
-            var faceUpCardIndicaes = [Int]()
-            for index in cards.indices {
-                    if cards[index].isFaceUp {
-                        faceUpCardIndicaes.append(index)
-                    }
-                }
-            if faceUpCardIndicaes.count == 1 {
-                return faceUpCardIndicaes.first
-            } else {
-                return nil
-                
-            }
-        }
-        
-        
-        set {
-            for index in cards.indices{
-                if index == newValue {
-                    cards[index].isFaceUp = true
-                }else{
-                    cards[index].isFaceUp = false
-                }
-            }
-        }
+        get {cards.indices.filter{ index in cards[index].isFaceUp }.only }
+        set {cards.indices.forEach { cards[$0].isFaceUp = ( newValue == $0) } }
+            // FIXME: bugs !!
     }
         
     
@@ -82,5 +60,12 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         var description: String {
             "\(id):\(content):\(isFaceUp ? "up" : "down")\(isMatched ? "matched" : "")"
         }
+    }
+}
+
+
+extension Array {
+    var only : Element? {
+       count == 1 ? first :  nil
     }
 }
