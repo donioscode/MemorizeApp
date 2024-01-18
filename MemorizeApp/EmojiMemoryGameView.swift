@@ -19,9 +19,12 @@ struct EmojiMemoryGameView: View {
             Button("Shuffle") {
                 viewmodel.shuffle()
             }
+            .background(.white)
         }
+        .background(.blue)
             
           .padding()
+          
     }
 
     var cards: some View {
@@ -33,7 +36,6 @@ struct EmojiMemoryGameView: View {
                         .onTapGesture {
                             viewmodel.choose(card)
                         }
-                
             }
          
         }
