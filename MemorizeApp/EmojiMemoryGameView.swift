@@ -14,8 +14,9 @@ struct EmojiMemoryGameView: View {
         VStack {
             ScrollView{
                 cards
+                    .animation(.default, value: viewmodel.cards)
             }
-            Button("Shuffle"){
+            Button("Shuffle") {
                 viewmodel.shuffle()
             }
         }
@@ -73,6 +74,7 @@ struct EmojiMemoryGameView_Previews: PreviewProvider{
 }
 
 //changed Previews my hand
+
 //
 //#Preview {
 //    EmojiMemoryGameView()
